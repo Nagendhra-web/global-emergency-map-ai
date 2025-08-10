@@ -1,0 +1,36 @@
+name: Global Emergency Map
+
+on:
+  workflow_dispatch: {}         # allow manual "Run workflow"
+  schedule:
+    - cron: "0 13 * * *"        # run daily at 9 AM ET
+
+permissions:
+  contents: write               # allow the job to push commits
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r requirements.txt
+
+      - name: Run data pipeline
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}   # optional Hugging Face token
+        run: python pipeline/run.py
+
+      - name: Commit data updates
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "auto-agent"
+            git config user.email "agent@users.noreply.github.com"
+            git add -A
+            git commit -m "chore(data): daily map refresh"
+            git push
+          fi
