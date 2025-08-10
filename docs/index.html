@@ -9,16 +9,48 @@
 </head>
 <body>
   <div id="map"></div>
+
+  <!-- Top-left control panel -->
   <div class="panel">
     <div class="title">Global Emergency Map</div>
+
     <div class="row">
       <label><input type="checkbox" class="f-type" value="earthquake" checked> Earthquakes</label>
       <label><input type="checkbox" class="f-type" value="Wildfires" checked> Wildfires</label>
       <label><input type="checkbox" class="f-type" value="Severe Storms" checked> Storms</label>
       <label><input type="checkbox" class="f-type" value="Floods" checked> Floods</label>
     </div>
-    <div class="row small" id="updated">Updated: –</div>
+
+    <div class="row small">Date range</div>
+    <div class="row dates">
+      <input id="fromDate" type="date"/>
+      <span>→</span>
+      <input id="toDate" type="date"/>
+    </div>
+
+    <div id="updated" class="row small">Updated: –</div>
+
+    <div id="legend" class="legend">
+      <div class="legend-title">Legend</div>
+      <div class="legend-item"><span class="dot dot-quake-low"></span> M &lt; 4.0</div>
+      <div class="legend-item"><span class="dot dot-quake-mod"></span> 4.0 – 4.9</div>
+      <div class="legend-item"><span class="dot dot-quake-high"></span> 5.0 – 5.9</div>
+      <div class="legend-item"><span class="dot dot-quake-severe"></span> ≥ 6.0</div>
+      <div class="legend-note">Other types use color by category.</div>
+    </div>
   </div>
+
+  <!-- Right-side details panel -->
+  <aside id="details">
+    <div class="details-header">
+      <div id="details-title">Click a marker</div>
+      <button id="details-close" title="Close">×</button>
+    </div>
+    <div id="details-body" class="details-body">
+      <p>Select an event on the map to see details here.</p>
+    </div>
+  </aside>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="./app.js"></script>
 </body>
