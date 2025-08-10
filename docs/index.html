@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Global Emergency Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="panel">
+    <div class="title">Global Emergency Map</div>
+    <div class="row">
+      <label><input type="checkbox" class="f-type" value="earthquake" checked> Earthquakes</label>
+      <label><input type="checkbox" class="f-type" value="Wildfires" checked> Wildfires</label>
+      <label><input type="checkbox" class="f-type" value="Severe Storms" checked> Storms</label>
+      <label><input type="checkbox" class="f-type" value="Floods" checked> Floods</label>
+    </div>
+    <div class="row small" id="updated">Updated: –</div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
